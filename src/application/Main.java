@@ -12,12 +12,22 @@ public class Main {
     public static void main(String[] args) {
         SellerDao sellerDao = DaoFactory.createSellerDao();
         Seller seller = sellerDao.findById(1);
+        System.out.println("================ FindByID ================");
         System.out.println(seller);
+        System.out.println("=========================================");
 
         System.out.println("\n\n=============== FindByDepartment ================");
         List<Seller> list = sellerDao.findByDepartment(new Department(1, null));
         for (Seller s : list) {
             System.out.println(s);
         }
+        System.out.println("=========================================");
+        System.out.println("\n\n=============== FindAll ================");
+        List<Seller> sellers = sellerDao.findAll();
+        for (Seller s : sellers){
+            System.out.println(s);
+        }
+        System.out.println("=========================================");
+
     }
 }
