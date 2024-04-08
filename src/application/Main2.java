@@ -1,5 +1,6 @@
 package application;
 
+import db.DB;
 import model.dao.DaoFactory;
 import model.dao.DepartmentDao;
 import model.dao.impl.DepartmentDaoJDBC;
@@ -18,6 +19,14 @@ public class Main2 {
         System.out.println("============= insert department "+ department.getName() +" ===================");
         departmentDao.insert(department);
         System.out.println("===========================================================");
+        System.out.println("\n\n===================== Update department ======================================");
+        Department depTest = new Department("feijões");
+        departmentDao.insert(depTest);
+        System.out.println("Old Department: "+ departmentDao.findById(depTest.getId()));
+        departmentDao.update(new Department(depTest.getId(),"fitness"));
+        System.out.println("Department update: "+ departmentDao.findById(depTest.getId()));
+        System.out.println("===========================================================");
+
 
         System.out.println("\n\n======================= Find all departments ====================================");
         //FindAll department
@@ -32,12 +41,12 @@ public class Main2 {
         System.out.println("===========================================================");
 
         System.out.println("\n\n===================== delete by id ======================================");
-        Department depTest = new Department("feijões");
-        departmentDao.insert(depTest);
-        departmentDao.deleteById(depTest.getId());
+        Department depTest2 = new Department("feijões");
+        departmentDao.insert(depTest2);
+        departmentDao.deleteById(depTest2.getId());
         System.out.println("===========================================================");
 
 
-
+        DB.closeConnection();
     }
 }
